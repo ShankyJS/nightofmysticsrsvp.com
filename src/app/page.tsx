@@ -10,7 +10,11 @@ export default function Home() {
 
   // Generate rain drops only on client side to avoid hydration mismatch
   useEffect(() => {
-    const drops = Array.from({ length: 100 }, () => ({
+    // Use fewer rain drops on mobile for better performance
+    const isMobile = window.innerWidth < 768;
+    const dropCount = isMobile ? 40 : 100;
+    
+    const drops = Array.from({ length: dropCount }, () => ({
       left: `${Math.random() * 100}%`,
       delay: `${Math.random() * 2}s`,
       duration: `${0.5 + Math.random() * 0.5}s`,

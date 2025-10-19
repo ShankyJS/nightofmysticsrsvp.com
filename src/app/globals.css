@@ -81,16 +81,27 @@ html {
   background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.6), transparent);
   animation: rainfall linear infinite;
   filter: blur(0.5px);
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 @keyframes rainfall {
   0% {
-    top: -10%;
+    transform: translateY(-10vh) translateZ(0);
     opacity: 1;
   }
   100% {
-    top: 110%;
+    transform: translateY(110vh) translateZ(0);
     opacity: 0.5;
+  }
+}
+
+/* Reduce rain intensity on mobile */
+@media (max-width: 768px) {
+  .rain {
+    height: 40px;
+    filter: blur(0.3px);
   }
 }
 
@@ -105,6 +116,9 @@ html {
   height: 200%;
   background: radial-gradient(circle, rgba(100, 100, 100, 0.05) 0%, transparent 70%);
   animation: fog-drift linear infinite;
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 .fog-1 {
@@ -127,6 +141,19 @@ html {
   top: -40%;
   left: -40%;
   opacity: 0.4;
+}
+
+/* Reduce fog complexity on mobile */
+@media (max-width: 768px) {
+  .fog {
+    width: 150%;
+    height: 150%;
+  }
+  
+  .fog-2,
+  .fog-3 {
+    opacity: 0.3;
+  }
 }
 
 @keyframes fog-drift {
