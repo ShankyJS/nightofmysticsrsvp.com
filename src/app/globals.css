@@ -1,26 +1,156 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap');
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #000000;
+  --foreground: #fafaf9;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: 'Inter', var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-serif: 'Cinzel', serif;
+  
+  /* Mystic Coral color palette (matching the logo) */
+  --color-mystic-coral: #d87c7c;
+  --color-mystic-coral-light: #e89c9c;
+  --color-mystic-coral-dark: #c85c5c;
+  
+  /* Dark theme palette */
+  --color-zinc-900: #18181b;
+  --color-zinc-950: #09090b;
+  
+  /* Stone color palette for text */
+  --color-stone-50: #fafaf9;
+  --color-stone-100: #f5f5f4;
+  --color-stone-200: #e7e5e4;
+  --color-stone-300: #d6d3d1;
+  --color-stone-400: #a8a29e;
+  --color-stone-500: #78716c;
+  --color-stone-600: #57534e;
+  --color-stone-700: #44403c;
+  --color-stone-800: #292524;
+  --color-stone-900: #1c1917;
+  --color-stone-950: #0c0a09;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  font-feature-settings: 'cv11', 'ss01';
+  font-variation-settings: 'opsz' 32;
+}
+
+.font-serif {
+  font-family: 'Cinzel', serif;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom backdrop blur for better browser support */
+.backdrop-blur-sm {
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+/* Add a subtle mystical glow effect */
+@keyframes mystic-glow {
+  0%, 100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+.mystic-glow {
+  animation: mystic-glow 3s ease-in-out infinite;
+}
+
+/* Premium Rain Effect */
+.rain {
+  position: absolute;
+  width: 2px;
+  height: 60px;
+  background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.6), transparent);
+  animation: rainfall linear infinite;
+  filter: blur(0.5px);
+}
+
+@keyframes rainfall {
+  0% {
+    top: -10%;
+    opacity: 1;
+  }
+  100% {
+    top: 110%;
+    opacity: 0.5;
+  }
+}
+
+/* Fog/Mist Effect */
+.fog-container {
+  overflow: hidden;
+}
+
+.fog {
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(100, 100, 100, 0.05) 0%, transparent 70%);
+  animation: fog-drift linear infinite;
+}
+
+.fog-1 {
+  animation-duration: 40s;
+  top: -50%;
+  left: -50%;
+}
+
+.fog-2 {
+  animation-duration: 50s;
+  animation-delay: -15s;
+  top: -30%;
+  left: -30%;
+  opacity: 0.6;
+}
+
+.fog-3 {
+  animation-duration: 60s;
+  animation-delay: -30s;
+  top: -40%;
+  left: -40%;
+  opacity: 0.4;
+}
+
+@keyframes fog-drift {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  33% {
+    transform: translate(10%, 5%) rotate(120deg);
+  }
+  66% {
+    transform: translate(-5%, 10%) rotate(240deg);
+  }
+  100% {
+    transform: translate(0, 0) rotate(360deg);
+  }
+}
+
+/* Ensure content is always readable above effects */
+.rain-container,
+.fog-container {
+  z-index: 0;
+}
+
+/* Add subtle text shadow for better readability */
+h1, h2, h3, h4, h5, h6 {
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
 }
